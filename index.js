@@ -15,9 +15,9 @@ http.listen(port, function(){
 
 app.use(bodyParser.json());
 
-// app.get('/', function(req,res){
-// 	res.sendFile('/index.html', {root:__dirname});
-// });
+app.get('/music', function(req,res){
+	res.sendFile('/e.mp3', {root:__dirname});
+});
 
 // app.use('/node_modules', express.static(__dirname + "/node_modules"));
 
@@ -29,9 +29,18 @@ client.on('connection', function(socket){
 		console.log(data);
 	});
 
-	socket.on("foo", function(data){
-		console.log(data);
-	});
+	var data = {
+		name : "Ugenteraan",
+		emotion : "Angry"
+	};
+
+	client.emit("data4android", data);
+
 });
 
+app.post('/trying', function(req,res){
 
+	console.log(req.body);
+
+});
+	
