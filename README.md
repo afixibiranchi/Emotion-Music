@@ -1,7 +1,12 @@
 # Emotion-Music
 MCMC hackathon 2017
 
-We will use convolutional neural network to detect emotion using any live webcam, but this hackathon, we just demo on external webcam. [TRAIN USING THIS DATASET](https://www.kaggle.com/c/challenges-in-representation-learning-facial-expression-recognition-challenge/data)
+We will use convolutional neural network to detect emotion using any live webcam, but this hackathon.
+
+![alt text](https://raw.githubusercontent.com/Mongoool/Emotion-Music/master/screenshot/screenshot1.png)
+![alt text](https://raw.githubusercontent.com/Mongoool/Emotion-Music/master/screenshot/screenshot2.png)
+![alt text](https://raw.githubusercontent.com/Mongoool/Emotion-Music/master/screenshot/screenshot3.png)
+![alt text](https://raw.githubusercontent.com/Mongoool/Emotion-Music/master/screenshot/screenshot4.png)
 
 ## Old dataset, we not used it anymore
 ![alt text](bar-emotion.png)
