@@ -6,9 +6,7 @@ import android.os.Environment;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.util.Log;
-import android.view.View;
 import android.widget.Button;
-import android.widget.EditText;
 import android.widget.TextView;
 
 import org.json.JSONException;
@@ -24,7 +22,7 @@ public class MainActivity extends AppCompatActivity {
     private Button btn_sad;
     private Button btn_hpy;
     private Button btn_ang;
-    private TextView user_name;
+    private TextView mTVUsername;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -32,6 +30,8 @@ public class MainActivity extends AppCompatActivity {
         setContentView(R.layout.activity_main);
 
         conn();
+
+        mTVUsername = (TextView) findViewById(R.id.user_name);
 
 //        btn_sad = (Button) findViewById(R.id.btn_sad);
 //        btn_hpy = (Button) findViewById(R.id.btn_hpy);
@@ -109,12 +109,22 @@ public class MainActivity extends AppCompatActivity {
                         e.printStackTrace();
                     }
 
-                    user_name = (TextView) findViewById(R.id.user_name);
-
-                    user_name.setText(usr_Name);
+                    final String finalUsr_Name = usr_Name;
+                    runOnUiThread(new Runnable() {
+                        @Override
+                        public void run() {
+                            mTVUsername.setText(finalUsr_Name);
+                        }
+                    });
 
                     if(emo.equals("Happy")){
                         playMusic("/Happy.mp3");
+                    }
+                    else if(emo.equals("Sad")){
+                        playMusic("/When I Was Your Man.mp3");
+                    }
+                    else if(emo.equals("Angry")){
+                        playMusic("/Scream.mp3");
                     }
                 }
 
