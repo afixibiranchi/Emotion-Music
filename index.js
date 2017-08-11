@@ -6,7 +6,9 @@ var express 	= require('express'),
 	bodyParser	= require('body-parser');
 
 
-var port = 3333;
+var port = 2000;
+
+app.use(bodyParser.json());
 
 http.listen(port, function(){
 	console.log("Listening at port " + port);
