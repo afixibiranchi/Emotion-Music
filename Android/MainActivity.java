@@ -33,22 +33,44 @@ public class MainActivity extends AppCompatActivity {
         btn_hpy = (Button) findViewById(R.id.btn_hpy);
         btn_ang = (Button) findViewById(R.id.btn_ang);
 
+        btn_sad.setOnClickListener(
+                new View.OnClickListener() {
+                    @Override
+                    public void onClick(View v) {
+                        playMusic("/When I Was Your Man.mp3");
+                    }
+                }
+        );
+
+        btn_hpy.setOnClickListener(
+                new View.OnClickListener() {
+                    @Override
+                    public void onClick(View v) {
+                        playMusic("/Happy.mp3");
+                    }
+                }
+        );
+
        btn_ang.setOnClickListener(
                new View.OnClickListener() {
                    @Override
                    public void onClick(View v) {
-                       Intent intent = new Intent();
-                       intent.setAction(android.content.Intent.ACTION_VIEW);
-                       String filepath = Environment.getExternalStoragePublicDirectory((Environment.DIRECTORY_MUSIC)).toString();
-                       System.out.println(filepath);
-                       filepath = filepath.concat("/Scream.mp3");
-                       File file = new File(filepath);
-                       Log.d("Error", filepath);
-                       intent.setDataAndType(Uri.fromFile(file), "audio/*");
-                       startActivity(intent);
+                       playMusic("/Scream.mp3");
                    }
                }
        );
+    }
+
+    public void playMusic(String filename){
+        Intent intent = new Intent();
+        intent.setAction(android.content.Intent.ACTION_VIEW);
+        String filepath = Environment.getExternalStoragePublicDirectory((Environment.DIRECTORY_MUSIC)).toString();
+        System.out.println(filepath);
+        filepath = filepath.concat(filename);
+        File file = new File(filepath);
+        Log.d("Error", filepath);
+        intent.setDataAndType(Uri.fromFile(file), "audio/*");
+        startActivity(intent);
     }
 
     public void conn() {
