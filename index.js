@@ -6,11 +6,32 @@ var express 	= require('express'),
 	bodyParser	= require('body-parser');
 
 
-var port = 2000;
-
-app.use(bodyParser.json());
+var port = 2222;
 
 http.listen(port, function(){
 	console.log("Listening at port " + port);
 });
+
+
+app.use(bodyParser.json());
+
+// app.get('/', function(req,res){
+// 	res.sendFile('/index.html', {root:__dirname});
+// });
+
+// app.use('/node_modules', express.static(__dirname + "/node_modules"));
+
+client.on('connection', function(socket){
+
+	console.log("Connection made");
+
+	socket.on("DataFromPy", function(data){
+		console.log(data);
+	});
+
+	socket.on("foo", function(data){
+		console.log(data);
+	});
+});
+
 

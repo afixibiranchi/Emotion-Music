@@ -21,6 +21,6 @@
     "express": "^4.15.4",
     "http": "0.0.0",
     "mongoose": "^4.11.6",
-    "socket.io": "^2.0.3"
+    "socket.io": "^1.5.1"
   }
 }
