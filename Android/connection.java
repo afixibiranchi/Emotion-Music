@@ -16,7 +16,7 @@ public class connection extends MainActivity {
     public Socket getSocket(){
         if(mSocket==null){
             try{
-                mSocket= IO.socket("http://192.168.10.112:2222");
+                mSocket= IO.socket("http://192.168.1.47:2222");
             }catch (Exception e){
                 e.printStackTrace();
                 Log.d("error connecting","to server");

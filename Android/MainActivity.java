@@ -8,7 +8,10 @@ import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
 import android.widget.Button;
+import android.widget.EditText;
+import android.widget.TextView;
 
+import org.json.JSONException;
 import org.json.JSONObject;
 
 import java.io.File;
@@ -21,6 +24,7 @@ public class MainActivity extends AppCompatActivity {
     private Button btn_sad;
     private Button btn_hpy;
     private Button btn_ang;
+    private TextView user_name;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -29,36 +33,36 @@ public class MainActivity extends AppCompatActivity {
 
         conn();
 
-        btn_sad = (Button) findViewById(R.id.btn_sad);
-        btn_hpy = (Button) findViewById(R.id.btn_hpy);
-        btn_ang = (Button) findViewById(R.id.btn_ang);
-
-        btn_sad.setOnClickListener(
-                new View.OnClickListener() {
-                    @Override
-                    public void onClick(View v) {
-                        playMusic("/When I Was Your Man.mp3");
-                    }
-                }
-        );
-
-        btn_hpy.setOnClickListener(
-                new View.OnClickListener() {
-                    @Override
-                    public void onClick(View v) {
-                        playMusic("/Happy.mp3");
-                    }
-                }
-        );
-
-       btn_ang.setOnClickListener(
-               new View.OnClickListener() {
-                   @Override
-                   public void onClick(View v) {
-                       playMusic("/Scream.mp3");
-                   }
-               }
-       );
+//        btn_sad = (Button) findViewById(R.id.btn_sad);
+//        btn_hpy = (Button) findViewById(R.id.btn_hpy);
+//        btn_ang = (Button) findViewById(R.id.btn_ang);
+//
+//        btn_sad.setOnClickListener(
+//                new View.OnClickListener() {
+//                    @Override
+//                    public void onClick(View v) {
+//                        playMusic("/When I Was Your Man.mp3");
+//                    }
+//                }
+//        );
+//
+//        btn_hpy.setOnClickListener(
+//                new View.OnClickListener() {
+//                    @Override
+//                    public void onClick(View v) {
+//                        playMusic("/Happy.mp3");
+//                    }
+//                }
+//        );
+//
+//       btn_ang.setOnClickListener(
+//               new View.OnClickListener() {
+//                   @Override
+//                   public void onClick(View v) {
+//                       playMusic("/Scream.mp3");
+//                   }
+//               }
+//       );
     }
 
     public void playMusic(String filename){
@@ -87,13 +91,34 @@ public class MainActivity extends AppCompatActivity {
 
             });
 
-            socket.on("incoming", new Emitter.Listener() {
+            socket.on("data4android", new Emitter.Listener() {
 
                 @Override
                 public void call(final Object... args) {
                     Log.d("Error", args.toString());
                     JSONObject jsonObject = (JSONObject) args[0];
+
+                    String emo  = "";
+                    String usr_Name = "";
+
+                    try {
+                        emo = (String)  jsonObject.get("emotion");
+                        usr_Name = (String) jsonObject.get("name");
+                        Log.d("Error", emo);
+                    } catch (JSONException e) {
+                        e.printStackTrace();
+                    }
+
+                    user_name = (TextView) findViewById(R.id.user_name);
+
+                    user_name.setText(usr_Name);
+
+                    if(emo.equals("Happy")){
+                        playMusic("/Happy.mp3");
+                    }
                 }
+
+
 
             }).on(Socket.EVENT_DISCONNECT, new Emitter.Listener() {
 
