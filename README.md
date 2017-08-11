@@ -3,6 +3,13 @@ MCMC hackathon 2017
 
 We will use convolutional neural network to detect emotion using any live webcam, but this hackathon.
 
+We got 2 separate Convolutional Neural Network, first model is to detect who is the person, second model is to detect emotion from the face.
+
+We are using Tensorflow Library for dynamic graph machine learning.
+```bash
+sudo pip install scipy numpy matplotlib tensorflow
+```
+
 ![alt text](https://raw.githubusercontent.com/Mongoool/Emotion-Music/master/screenshot/screenshot1.png)
 ![alt text](https://raw.githubusercontent.com/Mongoool/Emotion-Music/master/screenshot/screenshot2.png)
 ![alt text](https://raw.githubusercontent.com/Mongoool/Emotion-Music/master/screenshot/screenshot3.png)
